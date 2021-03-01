@@ -2,12 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-<<<<<<< HEAD:BaristaApi/BaristaApi.csproj
     <TargetFramework>net5.0</TargetFramework>
-=======
-    <TargetFramework>net4.8</TargetFramework>
-    <RootNamespace>the_barista_api_team_1</RootNamespace>
->>>>>>> 131c5a90e120caa04bde740b3a85085db0dbe829:BaristaApi/the-barista-api-team-1/the-barista-api-team-1.csproj
   </PropertyGroup>
 
 </Project>
