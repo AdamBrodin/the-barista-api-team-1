@@ -3,125 +3,128 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-public class FluentEspresso
+namespace BaristaApi
 {
-    private int _water;
-    private int _milk;
-    private int _foamedMilk;
-    private int _ChocolateSyrup;
-    private List<Bean> _beans = new List<Bean>(); // Multiple beans can be used in the same beverage
-    private bool isGrinded;
-    private int perfectTemperature;
-    public enum CoffeeType
+    public class FluentEspresso
     {
-        Cappuccino,
-        Americano,
-        Espresso,
-        Macchiato,
-        Mocha,
-        Latte
-    }
-
-    public FluentEspresso AddWater(int amount, int perfectTemperature)
-    {
-        _water += amount;
-        this.perfectTemperature = perfectTemperature;
-        HeatWater();
-        return this;
-    }
-
-    public FluentEspresso AddMilk(int amount)
-    {
-        _milk += amount;
-        return this;
-    }
-
-    public FluentEspresso AddFoamMilk(int amount)
-    {
-        _foamedMilk += amount;
-        return this;
-    }
-
-    public FluentEspresso AddChocolateSyrup(int amount)
-    {
-        _ChocolateSyrup += amount;
-        return this;
-    }
-
-    public FluentEspresso AddBeans(Bean bean)
-    {
-        _beans.Add(bean);
-        return this;
-    }
-
-    public FluentEspresso GrindBeans()
-    {
-        if(_beans.Count < 0)
+        private int _water;
+        private int _milk;
+        private int _foamedMilk;
+        private int _ChocolateSyrup;
+        private List<Bean> _beans = new List<Bean>(); // Multiple beans can be used in the same beverage
+        private bool isGrinded;
+        private int perfectTemperature;
+        public enum CoffeeType
         {
-            throw new Exception("No beans were found");
+            Cappuccino,
+            Americano,
+            Espresso,
+            Macchiato,
+            Mocha,
+            Latte
         }
 
-        isGrinded = true;
-        return this;
-    }
-
-    public void HeatWater()
-    {
-        Random rand = new Random();
-        int temperature = rand.Next(10, 40); // Luke-warm water
-        while (temperature < perfectTemperature)
+        public FluentEspresso AddWater(int amount, int perfectTemperature = 35)
         {
-            temperature += rand.Next(4, 10);
-            if (temperature > perfectTemperature)
+            _water += amount;
+            this.perfectTemperature = perfectTemperature;
+            HeatWater();
+            return this;
+        }
+
+        public FluentEspresso AddMilk(int amount)
+        {
+            _milk += amount;
+            return this;
+        }
+
+        public FluentEspresso AddFoamMilk(int amount)
+        {
+            _foamedMilk += amount;
+            return this;
+        }
+
+        public FluentEspresso AddChocolateSyrup(int amount)
+        {
+            _ChocolateSyrup += amount;
+            return this;
+        }
+
+        public FluentEspresso AddBeans(Bean bean)
+        {
+            _beans.Add(bean);
+            return this;
+        }
+
+        public FluentEspresso GrindBeans()
+        {
+            if (_beans.Count < 0)
             {
-                temperature = perfectTemperature;
+                throw new Exception("No beans were found");
             }
-            Thread.Sleep(1000);
-            Console.WriteLine($"Water temperature is: {temperature}c");
-        }
-    }
 
-    public string ToBeverage()
-    {
-        if (_beans.Count <= 0 || _water <= 0)
-        {
-            throw new Exception("Key elements not found in beverage");
+            isGrinded = true;
+            return this;
         }
 
-        if (!isGrinded)
+        public void HeatWater()
         {
-            throw new Exception("Beans have not been grinded");
+            Random rand = new Random();
+            int temperature = rand.Next(10, 40); // Luke-warm water
+            while (temperature < perfectTemperature)
+            {
+                temperature += rand.Next(4, 10);
+                if (temperature > perfectTemperature)
+                {
+                    temperature = perfectTemperature;
+                }
+                Thread.Sleep(1000);
+                Console.WriteLine($"Water temperature is: {temperature}c");
+            }
         }
 
-        if (_foamedMilk > 0)
+        public string ToBeverage()
         {
+            if (_beans.Count <= 0 || _water <= 0)
+            {
+                throw new Exception("Key elements not found in beverage");
+            }
+
+            if (!isGrinded)
+            {
+                throw new Exception("Beans have not been grinded");
+            }
+
+            if (_foamedMilk > 0)
+            {
+                if (_milk > 0)
+                {
+                    return CoffeeType.Cappuccino.ToString();
+                }
+                else
+                {
+                    return CoffeeType.Macchiato.ToString();
+                }
+            }
+
+            if (_ChocolateSyrup > 0)
+            {
+                return CoffeeType.Mocha.ToString();
+            }
+
+            if (_water > 0 && _milk < 0)
+            {
+                return CoffeeType.Americano.ToString();
+            }
+
             if (_milk > 0)
             {
-                return CoffeeType.Cappuccino.ToString();
+                return CoffeeType.Latte.ToString();
             }
             else
             {
-                return CoffeeType.Macchiato.ToString();
+                return CoffeeType.Espresso.ToString();
             }
-        }
-
-        if (_ChocolateSyrup > 0)
-        {
-            return CoffeeType.Mocha.ToString();
-        }
-
-        if (_water > 0)
-        {
-            return CoffeeType.Americano.ToString();
-        }
-
-        if (_milk > 0)
-        {
-            return CoffeeType.Latte.ToString();
-        }
-        else
-        {
-            return CoffeeType.Espresso.ToString();
         }
     }
 }

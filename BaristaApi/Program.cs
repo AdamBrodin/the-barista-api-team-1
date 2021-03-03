@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 
 namespace BaristaApi
 {
@@ -19,19 +18,6 @@ namespace BaristaApi
             {
                 Console.WriteLine(e.Message);
             }
-        }
-    }
-
-    [TestClass]
-    public class CoffeeTests
-    {
-        FluentEspresso beverage;
-
-        [TestMethod]
-        public void CappuccinoTest()
-        {
-            beverage = new FluentEspresso().AddWater(50, 80).AddBeans(new Bean(5, Bean.BeanTypes.Arabica)).GrindBeans().AddMilk(15).AddFoamMilk(10);
-            Assert.AreEqual("Cappuccino", beverage.ToBeverage());
         }
     }
 }

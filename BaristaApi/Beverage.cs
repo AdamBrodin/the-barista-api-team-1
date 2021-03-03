@@ -1,73 +1,76 @@
 using System.Collections.Generic;
 
-public interface IBeverage
+namespace BaristaAPI
 {
-    List<string> Ingredients { get; }
-    string CupType { get; }
-}
+    public interface IBeverage
+    {
+        List<string> Ingredients { get; }
+        string CupType { get; }
+    }
 
-class Espresso : IBeverage
-{
-    public List<string> Ingredients => new List<string>()
+    class Espresso : IBeverage
+    {
+        public List<string> Ingredients => new List<string>()
     {
         "Base"
     };
 
-    public string CupType => "Small";
-}
+        public string CupType => "Small";
+    }
 
-class Latte : IBeverage
-{
-    public List<string> Ingredients => new List<string>()
+    class Latte : IBeverage
+    {
+        public List<string> Ingredients => new List<string>()
     {
         "Base",
         "Milk"
     };
 
-    public string CupType => "Medium";
-}
+        public string CupType => "Medium";
+    }
 
-class Mocha : IBeverage
-{
-    public List<string> Ingredients => new List<string>()
+    class Mocha : IBeverage
+    {
+        public List<string> Ingredients => new List<string>()
     {
         "Base",
         "Chocolate Syrup",
         "Milk"
     };
 
-    public string CupType => "Medium";
-}
-class Americano : IBeverage
-{
-    public List<string> Ingredients => new List<string>()
+        public string CupType => "Medium";
+    }
+    class Americano : IBeverage
+    {
+        public List<string> Ingredients => new List<string>()
     {
         "Base",
         "Water"
     };
 
-    public string CupType => "Large";
-}
+        public string CupType => "Large";
+    }
 
-class Macchiato : IBeverage
-{
-    public List<string> Ingredients => new List<string>()
+    class Macchiato : IBeverage
+    {
+        public List<string> Ingredients => new List<string>()
     {
         "Base",
         "Milk foam"
     };
 
-    public string CupType => "Medium";
-}
+        public string CupType => "Medium";
+    }
 
-class Cappuccino : IBeverage
-{
-    public List<string> Ingredients => new List<string>()
+    class Cappuccino : IBeverage
+    {
+        public List<string> Ingredients => new List<string>()
     {
         "Base",
         "Milk",
         "Milk foam"
     };
 
-    public string CupType => "Large";
+        public string CupType => "Large";
+    }
 }
