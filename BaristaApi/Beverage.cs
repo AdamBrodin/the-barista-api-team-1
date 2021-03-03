@@ -4,77 +4,70 @@ public interface IBeverage
 {
     List<string> Ingredients { get; }
     string CupType { get; }
-
-    FluentEspresso.CoffeeType GetCoffeeType();
 }
 
 class Espresso : IBeverage
 {
-    public List<string> Ingredients => throw new System.NotImplementedException();
-
-    public string CupType => throw new System.NotImplementedException();
-
-    public FluentEspresso.CoffeeType GetCoffeeType()
+    public List<string> Ingredients => new List<string>()
     {
-        throw new System.NotImplementedException();
-    }
+        "Base"
+    };
+
+    public string CupType => "Small";
 }
 
 class Latte : IBeverage
 {
-    public List<string> Ingredients => throw new System.NotImplementedException();
-
-    public string CupType => throw new System.NotImplementedException();
-
-    public FluentEspresso.CoffeeType GetCoffeeType()
+    public List<string> Ingredients => new List<string>()
     {
-        throw new System.NotImplementedException();
-    }
+        "Base",
+        "Milk"
+    };
+
+    public string CupType => "Medium";
 }
 
 class Mocha : IBeverage
 {
-    public List<string> Ingredients => throw new System.NotImplementedException();
-
-    public string CupType => throw new System.NotImplementedException();
-
-    public FluentEspresso.CoffeeType GetCoffeeType()
+    public List<string> Ingredients => new List<string>()
     {
-        throw new System.NotImplementedException();
-    }
+        "Base",
+        "Chocolate Syrup",
+        "Milk"
+    };
+
+    public string CupType => "Medium";
 }
 class Americano : IBeverage
 {
-    public List<string> Ingredients => throw new System.NotImplementedException();
-
-    public string CupType => throw new System.NotImplementedException();
-
-    public FluentEspresso.CoffeeType GetCoffeeType()
+    public List<string> Ingredients => new List<string>()
     {
-        throw new System.NotImplementedException();
-    }
+        "Base",
+        "Water"
+    };
+
+    public string CupType => "Large";
 }
 
 class Macchiato : IBeverage
 {
-    public List<string> Ingredients => throw new System.NotImplementedException();
-
-    public string CupType => throw new System.NotImplementedException();
-
-    public FluentEspresso.CoffeeType GetCoffeeType()
+    public List<string> Ingredients => new List<string>()
     {
-        throw new System.NotImplementedException();
-    }
+        "Base",
+        "Milk foam"
+    };
+
+    public string CupType => "Medium";
 }
 
 class Cappuccino : IBeverage
 {
-    public List<string> Ingredients => throw new System.NotImplementedException();
-
-    public string CupType => throw new System.NotImplementedException();
-
-    public FluentEspresso.CoffeeType GetCoffeeType()
+    public List<string> Ingredients => new List<string>()
     {
-        throw new System.NotImplementedException();
-    }
+        "Base",
+        "Milk",
+        "Milk foam"
+    };
+
+    public string CupType => "Large";
 }

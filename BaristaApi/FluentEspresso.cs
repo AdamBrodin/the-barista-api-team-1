@@ -1,5 +1,7 @@
 using BaristaApi;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 
 public class FluentEspresso
 {
@@ -9,6 +11,7 @@ public class FluentEspresso
     private int _ChocolateSyrup;
     private List<Bean> _beans = new List<Bean>(); // Multiple beans can be used in the same beverage
     private bool isGrinded;
+    private int perfectTemperature;
     public enum CoffeeType
     {
         Cappuccino,
@@ -19,9 +22,11 @@ public class FluentEspresso
         Latte
     }
 
-    public FluentEspresso AddWater(int amount)
+    public FluentEspresso AddWater(int amount, int perfectTemperature)
     {
         _water += amount;
+        this.perfectTemperature = perfectTemperature;
+        HeatWater();
         return this;
     }
 
@@ -31,13 +36,13 @@ public class FluentEspresso
         return this;
     }
 
-    public FluentEspresso FoamMilk(int amount)
+    public FluentEspresso AddFoamMilk(int amount)
     {
         _foamedMilk += amount;
         return this;
     }
 
-    public FluentEspresso ChocolateSyrup(int amount)
+    public FluentEspresso AddChocolateSyrup(int amount)
     {
         _ChocolateSyrup += amount;
         return this;
@@ -51,30 +56,58 @@ public class FluentEspresso
 
     public FluentEspresso GrindBeans()
     {
+        if(_beans.Count < 0)
+        {
+            throw new Exception("No beans were found");
+        }
+
         isGrinded = true;
         return this;
     }
 
+    public void HeatWater()
+    {
+        Random rand = new Random();
+        int temperature = rand.Next(10, 40); // Luke-warm water
+        while (temperature < perfectTemperature)
+        {
+            temperature += rand.Next(4, 10);
+            if (temperature > perfectTemperature)
+            {
+                temperature = perfectTemperature;
+            }
+            Thread.Sleep(1000);
+            Console.WriteLine($"Water temperature is: {temperature}c");
+        }
+    }
+
     public string ToBeverage()
     {
+        if (_beans.Count <= 0 || _water <= 0)
+        {
+            throw new Exception("Key elements not found in beverage");
+        }
 
-        CoffeeType coffeeType;
+        if (!isGrinded)
+        {
+            throw new Exception("Beans have not been grinded");
+        }
 
         if (_foamedMilk > 0)
         {
             if (_milk > 0)
             {
-                return  CoffeeType.Cappuccino.ToString();
+                return CoffeeType.Cappuccino.ToString();
             }
             else
             {
-                return  CoffeeType.Macchiato.ToString();
+                return CoffeeType.Macchiato.ToString();
             }
         }
 
         if (_ChocolateSyrup > 0)
         {
-            return  CoffeeType.Mocha.ToString();
+            return CoffeeType.Mocha.ToString();
         }
 
         if (_water > 0)

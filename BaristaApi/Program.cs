@@ -6,16 +6,19 @@ namespace BaristaApi
     {
         static void Main(string[] args)
         {
+            try
+            {
+                FluentEspresso cappuccino = new FluentEspresso().AddWater(50, 85).AddBeans(new Bean(5, Bean.BeanTypes.Arabica)).GrindBeans().AddMilk(25).AddFoamMilk(10);
 
-            FluentEspresso espresso = new FluentEspresso().AddWater(2000000).AddMilk(200000000).FoamMilk(20);
-            Console.WriteLine(espresso.ToBeverage());
-            /* pseudo-code
-            Espresso espresso = new Espresso().AddWater(20).AddBeans(b => b.AmountInG = 5 && b.Sort = CoffeSorts.Robusta).ToBravage();
-            //espresso is type of Espresso
 
-            Latte latte = new Espresso().AddWater(20).AddBeans(b => b.AmountInG = 7 && b.Sort = CoffeSorts.Robusta).AddMilk().ToBravage();
-            //latte is type of Latte
-             */
+                FluentEspresso mocca = new FluentEspresso().AddWater(30, 90).AddBeans(new Bean(3, Bean.BeanTypes.Excelsa)).GrindBeans().AddChocolateSyrup(10).AddMilk(30);
+                Console.WriteLine("You have made a: " + cappuccino.ToBeverage());
+                Console.WriteLine("You have made a: " + mocca.ToBeverage());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
