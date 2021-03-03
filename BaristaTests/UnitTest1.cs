@@ -1,7 +1,7 @@
 using BaristaApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-[assembly: Parallelize(Workers = 4, Scope = ExecutionScope.ClassLevel)]
+[assembly: Parallelize(Workers =6, Scope = ExecutionScope.MethodLevel)]
 
 namespace BaristaTests
 {
@@ -34,7 +34,7 @@ namespace BaristaTests
         [TestMethod]
         public void AmericanoTest()
         {
-            beverage = new FluentEspresso().AddWater(25, 85).AddBeans(new Bean(4, Bean.BeanTypes.Arabica)).GrindBeans().AddWater(15);
+            beverage = new FluentEspresso().AddWater(25, 85).AddBeans(new Bean(4, Bean.BeanTypes.Arabica)).GrindBeans().AddWater(15, true);
             Assert.AreEqual("Americano", beverage.ToBeverage());
         }
 

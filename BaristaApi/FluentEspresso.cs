@@ -7,7 +7,7 @@ namespace BaristaApi
 {
     public class FluentEspresso
     {
-        private int _water;
+        private int _water, _extraWater;
         private int _milk;
         private int _foamedMilk;
         private int _ChocolateSyrup;
@@ -29,6 +29,15 @@ namespace BaristaApi
             _water += amount;
             this.perfectTemperature = perfectTemperature;
             HeatWater();
+            return this;
+        }
+
+        public FluentEspresso AddWater(int amount, bool extraWater)
+        {
+            if (extraWater)
+            {
+                _extraWater += amount;
+            }
             return this;
         }
 
@@ -112,7 +121,7 @@ namespace BaristaApi
                 return CoffeeType.Mocha.ToString();
             }
 
-            if (_water > 0 && _milk < 0)
+            if (_extraWater > 0)
             {
                 return CoffeeType.Americano.ToString();
             }
