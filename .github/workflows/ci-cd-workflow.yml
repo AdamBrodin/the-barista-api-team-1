@@ -44,7 +44,7 @@ jobs:
         uses: actions/download-artifact@main
         with:
           name: webpack artifacts
-          path: public
+          path: BaristaApi
 
       - name: Build container image
         uses: docker/build-push-action@v2
