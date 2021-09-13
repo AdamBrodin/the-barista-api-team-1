@@ -49,8 +49,7 @@ jobs:
       - name: Build container image
         uses: docker/build-push-action@v1
         with:
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-          registry: docker.pkg.github.com
-          repository: adambrodin/the-barista-api-team-1
-          tag_with_sha: true
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: the-barista-api-team-1:latest
