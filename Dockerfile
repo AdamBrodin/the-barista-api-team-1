@@ -9,13 +9,13 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["/BaristaApi/BaristaApi.csproj", "."]
-RUN dotnet restore "BaristaApi/BaristaApi.csproj"
+RUN dotnet restore "BaristaApi.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "BaristaApi/BaristaApi.csproj" -c Release -o /app/build
+RUN dotnet build "BaristaApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "BaristaApi/BaristaApi.csproj" -c Release -o /app/publish
+RUN dotnet publish "BaristaApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
