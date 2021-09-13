@@ -8,8 +8,8 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["/BaristaApi/BaristaApi.csproj", "."]
-RUN dotnet restore "BaristaApi.csproj"
+COPY ["BaristaApi.csproj", "."]
+RUN dotnet restore "./BaristaApi.csproj"
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "BaristaApi.csproj" -c Release -o /app/build
