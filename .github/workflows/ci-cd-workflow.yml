@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@main
         with:
           name: webpack artifacts
-          path: public/
+          path: BaristaApi/
 
   docker-build-and-push:
     runs-on: ubuntu-latest
