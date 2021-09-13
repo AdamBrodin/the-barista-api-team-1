@@ -19,5 +19,8 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore BaristaApi
 
-      - name: Build Project
+      - name: Build Api
         run: dotnet build -c Release --no-restore BaristaApi
+
+      - name: Run Unit Tests
+        run: dotnet test -c Release BaristaTests
